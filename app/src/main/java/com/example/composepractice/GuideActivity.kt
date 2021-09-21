@@ -40,7 +40,9 @@ class GuideActivity : AppCompatActivity() {
         } else {
             setContent {
                 ComposePracticeTheme {
-
+                    GuidePage(listOf(R.mipmap.guide_1,R.mipmap.guide_2,R.mipmap.guide_3) ) {
+                        go2Main()
+                    }
                 }
             }
         }
