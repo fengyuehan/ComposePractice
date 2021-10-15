@@ -1,43 +1,120 @@
 package com.example.composewidget
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.composewidget.ui.theme.ComposePracticeTheme
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.ExperimentalUnitApi
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.composewidget.navigation.Screen
+import com.example.composewidget.page.LayoutPage
+import com.example.composewidget.page.RememberPage
+
+
+import com.example.composewidget.ui.theme.ThemeManager
+import com.example.composewidget.ui.theme.ThemeType
+import com.example.composewidget.viewmoduel.MainViewModel
+import com.example.composewidget.widget.FunctionList
+import com.example.composewidget.widget.Page
+
+val titleLiveData = MutableLiveData<String>()
+val themeTypeState = mutableStateOf(ThemeType.Default)
+val darkThemeState = mutableStateOf(false)
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalUnitApi
+    @ExperimentalFoundationApi
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposePracticeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+            val rememberTitle:String by titleLiveData.observeAsState("Compose Demo")
+            val themeType:ThemeType by themeTypeState
+            val isDarkTheme :Boolean by darkThemeState
+            val wrappedColor = ThemeManager.getWrappedColor(themeType)
+            window.statusBarColor = if(isDarkTheme) {
+                Color(0xFF181818)
+            }else {
+                wrappedColor.lightColors.primary
+            }.toArgb()
+            Page(
+                title = rememberTitle,
+                themeType = themeType,
+                isDarkTheme = isDarkTheme
+            ){
+                Content()
             }
         }
     }
 }
 
+@ExperimentalUnitApi
+@ExperimentalFoundationApi
+@ExperimentalMaterialApi
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ComposePracticeTheme {
-        Greeting("Android")
+fun Content(){
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Screen.main){
+        composable(Screen.main){
+            Main(navController = navController)
+        }
+        composable(Screen.layout){
+            LayoutPage()
+        }
+        composable(Screen.remember){
+            RememberPage()
+        }
     }
 }
+
+@ExperimentalFoundationApi
+@ExperimentalMaterialApi
+@Composable
+fun Main(navController: NavHostController) {
+    titleLiveData.value = "Compose Demo"
+    val viewModel: MainViewModel = viewModel()
+    FunctionList(list = viewModel.functions, navHostController = navController)
+}
+
+@Composable
+fun ButtonComponent(context: Context, intent: Intent, buttonText:String){
+    Button(
+        onClick = {
+            context.startActivity(intent)
+        },
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(8.dp),
+    ) {
+        Text(
+            text = buttonText,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            textAlign = TextAlign.Center,
+            color = Color.White
+        )
+    }
+}
+
