@@ -10,10 +10,11 @@ class MainViewModel :ViewModel() {
     val functions = arrayListOf<FuncInfo>().apply {
         add(FuncInfo("布局", Screen.layout, Color(0xFF00A1FF)))
         add(FuncInfo("remember和mutableStateOf",Screen.remember,Color(0xFF00A1FF)))
+        add(FuncInfo("文字", Screen.text, Color(0xFF000000)))
+        add(FuncInfo("EditText",Screen.editText,Color(0xFF000000)))
+        add(FuncInfo("图片", Screen.image, Color(0xFFFFBE3B)))
         add(FuncInfo("主题", Screen.theme, Color(0xFF6200EE)))
         add(FuncInfo("列表", Screen.List.main, Color(0xFF00C29B)))
-        add(FuncInfo("文字", Screen.text, Color(0xFF000000)))
-        add(FuncInfo("图片", Screen.image, Color(0xFFFFBE3B)))
         add(FuncInfo("Canvas", Screen.canvas, Color(0xFF1D2E44)))
         add(FuncInfo("自定义布局", Screen.custom_layout, Color(0xFF3587EC)))
         add(FuncInfo("动画", Screen.animation, Color(0xFFDD26AF)))

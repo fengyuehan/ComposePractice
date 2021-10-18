@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
@@ -27,8 +28,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.composewidget.navigation.Screen
-import com.example.composewidget.page.LayoutPage
-import com.example.composewidget.page.RememberPage
+import com.example.composewidget.page.*
 
 
 import com.example.composewidget.ui.theme.ThemeManager
@@ -42,6 +42,7 @@ val themeTypeState = mutableStateOf(ThemeType.Default)
 val darkThemeState = mutableStateOf(false)
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalTextApi
     @ExperimentalUnitApi
     @ExperimentalFoundationApi
     @ExperimentalMaterialApi
@@ -68,6 +69,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalTextApi
 @ExperimentalUnitApi
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
@@ -83,6 +85,12 @@ fun Content(){
         }
         composable(Screen.remember){
             RememberPage()
+        }
+        composable(Screen.text){
+            TextPageDemo()
+        }
+        composable(Screen.editText){
+            EditTextPage()
         }
     }
 }

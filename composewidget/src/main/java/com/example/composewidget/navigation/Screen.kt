@@ -21,5 +21,6 @@ object Screen {
 
     const val text = "text"
     const val theme = "theme"
+    const val editText = "editText"
 
 }
