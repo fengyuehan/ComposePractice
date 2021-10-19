@@ -23,9 +23,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.example.composewidget.titleLiveData
 
 @Composable
 fun EditTextPage(){
+    titleLiveData.value = "Compose EditText"
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             EditTextDemo()
@@ -54,7 +56,8 @@ fun EditTextDemo() {
 
     Spacer(modifier = Modifier.height(10.dp))
     var text5 by remember { mutableStateOf("") }
-    BasicTextField(value = text5,
+    BasicTextField(
+        value = text5,
         onValueChange = {
             text5 = it
         },
@@ -68,7 +71,7 @@ fun EditTextDemo() {
                     )
                 }
             }
-            innerTextField
+            innerTextField()
         },
         cursorBrush = SolidColor(Color.Red),
         modifier = Modifier.background(Color.LightGray, CircleShape)

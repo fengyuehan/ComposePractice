@@ -92,6 +92,9 @@ fun Content(){
         composable(Screen.editText){
             EditTextPage()
         }
+        composable(Screen.image){
+            ImagePageDemo()
+        }
     }
 }
 
