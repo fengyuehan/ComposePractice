@@ -1,6 +1,7 @@
 
 package com.example.composewidget.widget
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -95,5 +96,24 @@ fun HorizontalNoMoreItem(){
             modifier = Modifier.padding(0.dp,0.dp,20.dp,0.dp),
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Composable
+fun RadioButton(isSelected: Boolean, text: String, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .clickable { onClick() }, verticalAlignment = Alignment.CenterVertically
+    ) {
+        androidx.compose.material.RadioButton(
+            selected = isSelected,
+            modifier = Modifier.size(30.dp),
+            onClick = onClick
+        )
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.CenterStart) {
+            Text(text = text, color = MaterialTheme.colors.onSurface)
+        }
     }
 }

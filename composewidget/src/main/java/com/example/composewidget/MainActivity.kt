@@ -95,6 +95,12 @@ fun Content(){
         composable(Screen.image){
             ImagePageDemo()
         }
+        composable(Screen.List.main){
+            ListPageDemo()
+        }
+        composable(Screen.animation){
+            AnimationPageDemo()
+        }
     }
 }
 
