@@ -101,6 +101,15 @@ fun Content(){
         composable(Screen.animation){
             AnimationPageDemo()
         }
+        composable(Screen.gesture){
+            GesturePageDemo()
+        }
+        composable(Screen.canvas){
+            CanvasPageDemo()
+        }
+        composable(Screen.theme){
+            ThemePageDemo()
+        }
     }
 }
 
