@@ -10,7 +10,7 @@ class NewsViewModel :BaseViewModel() {
     val newsLiveData = MutableLiveData<NewsModelModel>()
 
     fun getNewsList(){
-        lunch {
+        launch {
             val newModel = ApiService.getNews()
             newModel.stories.add(0, StoryModel())
             newsLiveData.value = newModel

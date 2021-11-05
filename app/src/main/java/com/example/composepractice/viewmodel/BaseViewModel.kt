@@ -14,7 +14,7 @@ open class BaseViewModel :ViewModel(){
         value = State.Loading
     }
 
-    fun lunch(block :suspend CoroutineScope.() -> Unit){
+    open fun launch(block :suspend CoroutineScope.() -> Unit){
         viewModelScope.launch {
             kotlin.runCatching {
                 block

@@ -54,16 +54,11 @@ class MainActivity : ComponentActivity() {
             val selectIndex by viewModel.getSelectedIndex().observeAsState(initial = 0)
             ComposePracticeTheme {
                 Column {
-                    val pageState = rememberPagerState(
-                        pageCount = 5,
-                        initialPage = selectIndex,
-                        initialOffscreenLimit = 4
-                    )
+                    val pageState = rememberPagerState(initialPage = selectIndex)
                     HorizontalPager(
                         state = pageState,
-                        dragEnabled = false,
-                        modifier = Modifier.weight(1f)
-
+                        modifier = Modifier.weight(1f),
+                        count = listItem.size
                     ) { pager ->
                         when(pager){
                             0 -> NewsPage()

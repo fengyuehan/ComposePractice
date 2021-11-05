@@ -41,6 +41,7 @@ class GuideActivity : AppCompatActivity() {
             setContent {
                 ComposePracticeTheme {
                     GuidePage(listOf(R.mipmap.guide_1,R.mipmap.guide_2,R.mipmap.guide_3) ) {
+                        SpUtils.setBoolean(HAS_SHOW_GUIDE,true)
                         go2Main()
                     }
                 }
