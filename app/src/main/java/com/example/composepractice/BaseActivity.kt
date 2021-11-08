@@ -2,7 +2,7 @@ package com.example.composepractice
 
 import androidx.activity.ComponentActivity
 
-open class BaseActivity : ComponentActivity() {
+abstract class BaseActivity : ComponentActivity() {
 
     override fun finish() {
         super.finish()

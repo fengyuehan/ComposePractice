@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/netEaseMusicHomeFragment">
+    <fragment
+        android:id="@+id/netEaseMusicHomeFragment"
+        android:name="com.example.composepractice.ui.fragment.NetEaseMusicHomeFragment"
+        android:label="NetEaseMusicHomeFragment" />
+    <fragment
+        android:id="@+id/musicPlayListFragment"
+        android:name="com.example.composepractice.ui.fragment.MusicPlayListFragment"
+        android:label="MusicPlayListFragment">
+        <argument
+            android:name="recommend"
+            app:argType="com.example.composepractice.data.Recommend" />
+    </fragment>
+
+    <action
+        android:id="@+id/toMusicPlayListFragment"
+        app:destination="@id/musicPlayListFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/slide_out_right" />
+    <fragment
+        android:id="@+id/playSongFragment"
+        android:name="com.example.composepractice.ui.fragment.PlaySongFragment"
+        android:label="PlaySongFragment">
+        <action
+            android:id="@+id/action_playSongFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <action
+        android:id="@+id/toPlaySongFragment"
+        app:destination="@id/playSongFragment"
+        app:enterAnim="@anim/slide_in_down"
+        app:popExitAnim="@anim/slide_out_down" />
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.example.composepractice.ui.fragment.CommentsFragment"
+        android:label="CommentsFragment">
+        <argument
+            android:name="song"
+            app:argType="com.example.composepractice.data.Song" />
+    </fragment>
+</navigation>

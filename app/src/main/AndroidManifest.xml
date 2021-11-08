@@ -28,6 +28,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Jetpack_Compose_news.NoActionBar"
             />
+        <activity android:name=".FundActivity"/>
+        <activity android:name=".MusicSplashActivity"/>
     </application>
 
 </manifest>

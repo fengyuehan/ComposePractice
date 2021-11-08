@@ -110,6 +110,9 @@ fun Content(){
         composable(Screen.theme){
             ThemePageDemo()
         }
+        composable(Screen.animation_other){
+            AnimationOtherPageDemo()
+        }
     }
 }
 

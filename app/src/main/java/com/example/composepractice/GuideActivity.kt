@@ -53,14 +53,10 @@ class GuideActivity : AppCompatActivity() {
     @Composable
     fun GuidePage(imageList: List<Int>, go2Main: () -> Unit) {
         Box(Modifier.fillMaxSize()) {
-            val pageState = rememberPagerState(
-                pageCount = imageList.size,
-                initialOffscreenLimit = 2
-            )
+            val pagerState = rememberPagerState(initialPage = 0)
 
             HorizontalPager(
-                state = pageState,
-                modifier = Modifier.fillMaxSize(),
+                count = imageList.size,state = pagerState,modifier = Modifier.fillMaxSize()
                 ) { page ->
                 Image(
                     painter = painterResource(id = imageList[page]),
