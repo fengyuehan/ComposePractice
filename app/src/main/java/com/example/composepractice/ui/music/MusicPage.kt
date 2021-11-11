@@ -3,6 +3,7 @@ package com.example.composepractice.ui.music
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.GridCells
@@ -41,10 +42,10 @@ fun MusicPage(musicViewModel: MusicViewModel = viewModel()){
 @ExperimentalFoundationApi
 @Composable
 fun Greeting(menuList:List<MainMenu>,onMenuClick:((MainMenu) -> Unit)? = null){
-    LazyVerticalGrid(cells = GridCells.Fixed(count = 3)){
+    LazyVerticalGrid(cells = GridCells.Fixed(count = 3),verticalArrangement = Arrangement.Top){
         items(menuList){
             Column(modifier = Modifier
-                .fillParentMaxWidth(0.8f)
+                .fillParentMaxWidth()
                 .padding(8.dp)
                 .clickable {
                     onMenuClick?.invoke(it)

@@ -52,9 +52,8 @@ class GuideActivity : AppCompatActivity() {
     @OptIn(ExperimentalPagerApi::class)
     @Composable
     fun GuidePage(imageList: List<Int>, go2Main: () -> Unit) {
+        val pagerState = rememberPagerState(initialPage = 0)
         Box(Modifier.fillMaxSize()) {
-            val pagerState = rememberPagerState(initialPage = 0)
-
             HorizontalPager(
                 count = imageList.size,state = pagerState,modifier = Modifier.fillMaxSize()
                 ) { page ->
@@ -66,7 +65,7 @@ class GuideActivity : AppCompatActivity() {
                 )
             }
 
-            if (pageState.currentPage == imageList.size - 1) {
+            if (pagerState.currentPage == imageList.size - 1) {
                 Button(
                     onClick = {
                         go2Main()
@@ -110,7 +109,7 @@ class GuideActivity : AppCompatActivity() {
             }
 
             HorizontalPagerIndicator(
-                pagerState = pageState,
+                pagerState = pagerState,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(8.dp),

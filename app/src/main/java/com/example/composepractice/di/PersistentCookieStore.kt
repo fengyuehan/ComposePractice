@@ -2,8 +2,8 @@ package com.mrlin.composemany.net
 
 import android.text.TextUtils
 import androidx.datastore.core.DataStore
-import com.mrlin.composemany.CookieInfo
-import com.mrlin.composemany.CookieStore
+import com.example.composepractice.CookieInfo
+import com.example.composepractice.CookieStore
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 import okhttp3.Cookie
@@ -18,22 +18,22 @@ class PersistentCookieStore(private val cookieDataStore: DataStore<CookieStore>)
      * cookieToken的获取
      */
     private fun getCookieToken(cookie: Cookie): String {
-        return cookie.name() + "@" + cookie.domain()
+        return cookie.name + "@" + cookie.domain
     }
 
     fun add(url: HttpUrl, cookie: Cookie) {
         val name = getCookieToken(cookie)
-        if (!cookies.containsKey(url.host())) {
-            cookies[url.host()] = ConcurrentHashMap<String, Cookie>()
+        if (!cookies.containsKey(url.host)) {
+            cookies[url.host] = ConcurrentHashMap<String, Cookie>()
         }
-        cookies[url.host()]?.put(name, cookie)
+        cookies[url.host]?.put(name, cookie)
 
         //讲cookies持久化到本地
-        if (cookies.containsKey(url.host())) {
+        if (cookies.containsKey(url.host)) {
             runBlocking {
                 cookieDataStore.updateData {
                     it.toBuilder()
-                        .putHosts(url.host(), cookies[url.host()]?.keys?.joinToString(","))
+                        .putHosts(url.host, cookies[url.host]?.keys?.joinToString(","))
                         .putCookieCache(name, CookieInfo.getDefaultInstance().fromCookie(cookie))
                         .build()
                 }
@@ -42,15 +42,14 @@ class PersistentCookieStore(private val cookieDataStore: DataStore<CookieStore>)
     }
 
     private fun CookieInfo.fromCookie(cookie: Cookie): CookieInfo {
-        return toBuilder().setName(cookie.name())
-            .setValue(cookie.value())
-            .setExpiresAt(cookie.expiresAt())
-            .setDomain(cookie.domain())
-            .setPath(cookie.path())
-            .setSecure(cookie.secure())
-            .setHostOnly(cookie.hostOnly())
-            .setHostOnly(cookie.hostOnly())
-            .setPersistent(cookie.persistent())
+        return toBuilder().setName(cookie.name)
+            .setValue(cookie.value)
+            .setExpiresAt(cookie.expiresAt)
+            .setDomain(cookie.domain)
+            .setPath(cookie.path)
+            .setSecure(cookie.secure)
+            .setHostOnly(cookie.hostOnly)
+            .setPersistent(cookie.persistent)
             .build()
     }
 
@@ -66,7 +65,7 @@ class PersistentCookieStore(private val cookieDataStore: DataStore<CookieStore>)
 
     operator fun get(url: HttpUrl): List<Cookie> {
         val ret = ArrayList<Cookie>()
-        if (cookies.containsKey(url.host())) ret.addAll(cookies[url.host()]?.values ?: emptyList())
+        if (cookies.containsKey(url.host)) ret.addAll(cookies[url.host]?.values ?: emptyList())
         return ret
     }
 
@@ -80,13 +79,13 @@ class PersistentCookieStore(private val cookieDataStore: DataStore<CookieStore>)
 
     fun remove(url: HttpUrl, cookie: Cookie): Boolean {
         val name = getCookieToken(cookie)
-        return if (cookies.containsKey(url.host()) && cookies[url.host()]?.containsKey(name) == true) {
-            cookies[url.host()]?.remove(name)
+        return if (cookies.containsKey(url.host) && cookies[url.host]?.containsKey(name) == true) {
+            cookies[url.host]?.remove(name)
             runBlocking {
                 cookieDataStore.updateData {
                     it.toBuilder()
                         .removeCookieCache(name)
-                        .putHosts(url.host(), cookies[url.host()]?.keys?.joinToString(","))
+                        .putHosts(url.host, cookies[url.host]?.keys?.joinToString(","))
                         .build()
                 }
             }

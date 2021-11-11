@@ -1,12 +1,16 @@
 package com.example.composepractice
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -53,24 +57,41 @@ class MainActivity : ComponentActivity() {
         setContent {
             //observeAsState 该函数的作用就是将ViewModel提供的LiveData数据转换为Compose需要的State数据。
             val viewModel:MainViewModel  = viewModel()
-            val selectIndex by viewModel.getSelectedIndex().observeAsState(initial = 0)
+            //val selectIndex by viewModel.getSelectedIndex().observeAsState(initial = 0)
             ComposePracticeTheme {
                 Column {
-                    val pageState = rememberPagerState(initialPage = selectIndex)
+                    val pageState = rememberPagerState(initialPage = 0)
                     HorizontalPager(
                         state = pageState,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .scrollable(
+                                state = rememberScrollState(),
+                                enabled = false,
+                                orientation = Orientation.Horizontal
+                            ),
                         count = listItem.size
-                    ) { pager ->
-                        when(pager){
-                            0 -> NewsPage()
-                            1 -> MoviePage()
-                            2 -> PicturePage()
-                            3 -> MusicPage()
-                            4 -> WeatherPage()
+                    ) { page ->
+                        when(page){
+                            0 -> {
+                                NewsPage()
+                            }
+                            1 -> {
+                                MoviePage()
+                            }
+                            2 -> {
+                                PicturePage()
+                            }
+                            3 -> {
+                                MusicPage()
+                            }
+                            4 -> {
+                                WeatherPage()
+                            }
                         }
 
                     }
+                    Log.e("zzf","pageState =  " + pageState.currentPage);
                     BottomNavigationAlwaysShowLabelComponent(pagerState = pageState)
                 }
             }
@@ -107,28 +128,33 @@ fun BottomNavigationAlwaysShowLabelComponent(pagerState: PagerState){
      *  Dispatcher通常为AndroidUiDispatcher.Main
      */
     val scope = rememberCoroutineScope()
-
+    Log.e("zzf","BottomNavigation pagerState  : " + pagerState.currentPage)
     BottomNavigation(backgroundColor = Color.White) {
         listItem.forEachIndexed { index, label ->
             BottomNavigationItem(
                 icon = {
                     when(index){
-                        0 -> BottomIcon(image = Icons.Filled.Home, selectIndex = selectIndex, index = index)
+                        /*0 -> BottomIcon(image = Icons.Filled.Home, selectIndex = selectIndex, index = index)
                         1 -> BottomIcon(image = Icons.Filled.List, selectIndex = selectIndex, index = index)
                         2 -> BottomIcon(image = Icons.Filled.Favorite, selectIndex = selectIndex, index = index)
                         3 -> BottomIcon(image = Icons.Filled.ThumbUp, selectIndex = selectIndex, index = index)
-                        4 -> BottomIcon(image = Icons.Filled.Place, selectIndex = selectIndex, index = index)
+                        4 -> BottomIcon(image = Icons.Filled.Place, selectIndex = selectIndex, index = index)*/
+                        0 -> BottomIcon(image = Icons.Filled.Home, selectIndex = pagerState.currentPage, index = index)
+                        1 -> BottomIcon(image = Icons.Filled.List, selectIndex = pagerState.currentPage, index = index)
+                        2 -> BottomIcon(image = Icons.Filled.Favorite, selectIndex = pagerState.currentPage, index = index)
+                        3 -> BottomIcon(image = Icons.Filled.ThumbUp, selectIndex = pagerState.currentPage, index = index)
+                        4 -> BottomIcon(image = Icons.Filled.Place, selectIndex = pagerState.currentPage, index = index)
                     }
                 },
                 label = {
                     Text(
                         text = label,
-                        color = if (selectIndex == index) MaterialTheme.colors.primary else Color.Gray
+                        color = if (selectIndex == pagerState.currentPage) MaterialTheme.colors.primary else Color.Gray
                     )
                 },
-                selected = selectIndex == index ,
+                selected = selectIndex == pagerState.currentPage ,
                 onClick = {
-                    viewModel.saveSelectIndex(index)
+                    //viewModel.saveSelectIndex(pagerState.currentPage)
                     scope.launch {
                         pagerState.scrollToPage(index)
                     }

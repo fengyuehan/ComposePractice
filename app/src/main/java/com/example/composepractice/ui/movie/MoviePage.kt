@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
 import com.example.composepractice.R
-import com.example.composepractice.` view`.StaggeredVerticalGrid
+import com.example.composepractice.views.StaggeredVerticalGrid
 import com.example.composepractice.data.MovieItemModel
 import com.example.composepractice.ext.formatDateMsByMS
 import com.example.composepractice.view.LoadingPage

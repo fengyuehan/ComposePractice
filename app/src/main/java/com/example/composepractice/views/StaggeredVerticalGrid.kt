@@ -1,4 +1,4 @@
-package com.example.composepractice.` view`
+package com.example.composepractice.views
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

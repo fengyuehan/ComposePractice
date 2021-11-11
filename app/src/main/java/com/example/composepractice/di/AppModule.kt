@@ -3,9 +3,14 @@ package com.example.composepractice.di
 import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
 import androidx.room.Room
+import com.example.composepractice.CookieStore
+import com.example.composepractice.MusicSettings
 import com.example.composepractice.db.MusicDatabase
 import com.example.composepractice.http.NetMusicApi
+import com.example.composepractice.store.CookieStoreSerializer
+import com.example.composepractice.store.MusicSettingsSerializer
 import com.mrlin.composemany.net.PersistCookieJar
 import dagger.Module
 import dagger.Provides
@@ -17,7 +22,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.CookieStore
+
 import javax.inject.Singleton
 
 /**
@@ -65,5 +70,22 @@ class AppModule {
     fun provideMusicDatabase(@ApplicationContext context: Context):MusicDatabase =
         Room.databaseBuilder(context,MusicDatabase::class.java,"net-ease-music").build()
 
+    @Provides
+    fun provideMusicSettings(@ApplicationContext context: Context): DataStore<MusicSettings> =
+        context.musicSettingsDataStore
+
+    @Provides
+    fun provideCookieStore(@ApplicationContext context: Context): DataStore<CookieStore> =
+        context.cookieStoreDataStore
+
+    private val Context.musicSettingsDataStore: DataStore<MusicSettings> by dataStore(
+        fileName = "music_settings.pb",
+        serializer = MusicSettingsSerializer
+    )
+
+    private val Context.cookieStoreDataStore: DataStore<CookieStore> by dataStore(
+        fileName = "cookie_store.pb",
+        serializer = CookieStoreSerializer
+    )
 
 }
