@@ -112,23 +112,23 @@ fun Home(musicHomeViewModel: MusicHomeViewModel? = null,
                 Text(text = "大家都在搜 陈奕迅", color = Color.LightGray)
             }
             Spacer(modifier = Modifier.width(8.dp))
-            val pages: List<Pair<String, @Composable () -> Unit>> = listOf(
-                "发现" to { Discovery(discoveryViewData, onToScreen = onScreen) },
-                "我的" to { Mine(myPlayListData, onToScreen = onScreen) },
-                "动态" to { NewAction() }
-            )
-            val pagerState = rememberPagerState()
-            val pagerScope = rememberCoroutineScope()
-            TabRow(selectedTabIndex = pagerState.currentPage,backgroundColor = Color.Transparent) {
-                pages.forEachIndexed { index, page ->
-                    Tabs(tab = page.first, selected = index == pagerState.currentPage) {
-                        pagerScope.launch { pagerState.scrollToPage(index) }
-                    }
+        }
+        val pages: List<Pair<String, @Composable () -> Unit>> = listOf(
+            "发现" to { Discovery(discoveryViewData, onToScreen = onScreen) },
+            "我的" to { Mine(myPlayListData, onToScreen = onScreen) },
+            "动态" to { NewAction() }
+        )
+        val pagerState = rememberPagerState()
+        val pagerScope = rememberCoroutineScope()
+        TabRow(selectedTabIndex = pagerState.currentPage,backgroundColor = Color.Transparent) {
+            pages.forEachIndexed { index, page ->
+                Tabs(tab = page.first, selected = index == pagerState.currentPage) {
+                    pagerScope.launch { pagerState.scrollToPage(index) }
                 }
             }
-            HorizontalPager(count = 3,state = pagerState,verticalAlignment = Alignment.Top) {
+        }
+        HorizontalPager(count = 3,state = pagerState,verticalAlignment = Alignment.Top) {
                 page -> pages[page].second()
-            }
         }
     }
 }

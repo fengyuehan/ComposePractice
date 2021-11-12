@@ -56,8 +56,6 @@ class MainActivity : ComponentActivity() {
          */
         setContent {
             //observeAsState 该函数的作用就是将ViewModel提供的LiveData数据转换为Compose需要的State数据。
-            val viewModel:MainViewModel  = viewModel()
-            //val selectIndex by viewModel.getSelectedIndex().observeAsState(initial = 0)
             ComposePracticeTheme {
                 Column {
                     val pageState = rememberPagerState(initialPage = 0)
@@ -118,9 +116,6 @@ val listItem = listOf(
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun BottomNavigationAlwaysShowLabelComponent(pagerState: PagerState){
-    val viewModel:MainViewModel = viewModel()
-    val selectIndex by viewModel.getSelectedIndex().observeAsState(0)
-
     /**
      * 作用：用来创建并获取某个跨越函数栈存在的数据
      *  rememberCoroutineScope创建CoroutineScope，CoroutineScope不会随函数的执行反复创建
@@ -134,11 +129,6 @@ fun BottomNavigationAlwaysShowLabelComponent(pagerState: PagerState){
             BottomNavigationItem(
                 icon = {
                     when(index){
-                        /*0 -> BottomIcon(image = Icons.Filled.Home, selectIndex = selectIndex, index = index)
-                        1 -> BottomIcon(image = Icons.Filled.List, selectIndex = selectIndex, index = index)
-                        2 -> BottomIcon(image = Icons.Filled.Favorite, selectIndex = selectIndex, index = index)
-                        3 -> BottomIcon(image = Icons.Filled.ThumbUp, selectIndex = selectIndex, index = index)
-                        4 -> BottomIcon(image = Icons.Filled.Place, selectIndex = selectIndex, index = index)*/
                         0 -> BottomIcon(image = Icons.Filled.Home, selectIndex = pagerState.currentPage, index = index)
                         1 -> BottomIcon(image = Icons.Filled.List, selectIndex = pagerState.currentPage, index = index)
                         2 -> BottomIcon(image = Icons.Filled.Favorite, selectIndex = pagerState.currentPage, index = index)
@@ -149,10 +139,10 @@ fun BottomNavigationAlwaysShowLabelComponent(pagerState: PagerState){
                 label = {
                     Text(
                         text = label,
-                        color = if (selectIndex == pagerState.currentPage) MaterialTheme.colors.primary else Color.Gray
+                        color = if (index == pagerState.currentPage) MaterialTheme.colors.primary else Color.Gray
                     )
                 },
-                selected = selectIndex == pagerState.currentPage ,
+                selected = index == pagerState.currentPage ,
                 onClick = {
                     //viewModel.saveSelectIndex(pagerState.currentPage)
                     scope.launch {

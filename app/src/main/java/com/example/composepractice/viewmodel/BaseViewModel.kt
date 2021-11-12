@@ -1,5 +1,6 @@
 package com.example.composepractice.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,14 +15,15 @@ open class BaseViewModel :ViewModel(){
         value = State.Loading
     }
 
-    open fun launch(block :suspend CoroutineScope.() -> Unit){
+    fun launch(block :suspend CoroutineScope.() -> Unit){
         viewModelScope.launch {
             kotlin.runCatching {
-                block
+                block()
             }.onSuccess {
                 stateLiveData.value = State.Success
             }.onFailure {
                 stateLiveData.value = State.Error(it.message)
+                it.message?.let { it1 -> Log.e("zzf", it1) }
             }
         }
     }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.composepractice">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <!--android：usesCleartextTraffic 指示应用程序是否打算使用明文网络流量，例如明文HTTP。目标API级别为27或更低的应用程序的默认值为“ true”。面向API级别28或更高级别的应用默认为“ false”。-->
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -11,7 +13,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ComposePractice">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.ComposePractice"
+        tools:targetApi="m">
         <activity
             android:name=".GuideActivity"
             android:exported="true"
@@ -30,8 +34,10 @@
             />
         <activity android:name=".FundActivity"/>
         <activity android:name=".MusicSplashActivity"
-            android:theme="@style/Theme.Jetpack_Compose_news"
+            android:theme="@style/Theme.Jetpack_Compose_news.NoActionBar"
             />
+        <activity android:name=".ui.movie.VideoDetailActivity"/>
+        <activity android:name=".ui.info.NewsDetailActivity"/>
     </application>
 
 </manifest>

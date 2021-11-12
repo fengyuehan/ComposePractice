@@ -1,6 +1,7 @@
 package com.example.composepractice.http
 
 import com.example.composepractice.data.*
+import com.example.composepractice.ui.weather.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Url
 

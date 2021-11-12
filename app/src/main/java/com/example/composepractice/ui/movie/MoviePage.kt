@@ -26,8 +26,8 @@ import com.example.composepractice.R
 import com.example.composepractice.views.StaggeredVerticalGrid
 import com.example.composepractice.data.MovieItemModel
 import com.example.composepractice.ext.formatDateMsByMS
-import com.example.composepractice.view.LoadingPage
-import com.example.composepractice.view.TitleBar
+import com.example.composepractice.views.LoadingPage
+import com.example.composepractice.views.TitleBar
 import com.example.composepractice.viewmodel.MovieViewModel
 
 @Composable

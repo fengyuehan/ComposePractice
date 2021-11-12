@@ -1,4 +1,4 @@
-package com.example.composepractice.view
+package com.example.composepractice.views
 
 import android.content.Intent
 import android.graphics.Bitmap

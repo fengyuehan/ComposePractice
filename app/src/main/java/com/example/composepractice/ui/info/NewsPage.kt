@@ -28,8 +28,8 @@ import com.example.composepractice.data.NewsModelModel
 import com.example.composepractice.data.StoryModel
 import com.example.composepractice.data.TopStoryModel
 import com.example.composepractice.ext.toPx
-import com.example.composepractice.view.LoadingPage
-import com.example.composepractice.view.TitleBar
+import com.example.composepractice.views.LoadingPage
+import com.example.composepractice.views.TitleBar
 import com.example.composepractice.viewmodel.NewsViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager

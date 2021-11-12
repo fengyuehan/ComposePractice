@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.composepractice.ui.theme.ComposePracticeTheme
-import com.example.composepractice.view.CustomWebView
-import com.example.composepractice.view.TitleBar
+import com.example.composepractice.views.CustomWebView
+import com.example.composepractice.views.TitleBar
 
 
 @SuppressLint("RestrictedApi")

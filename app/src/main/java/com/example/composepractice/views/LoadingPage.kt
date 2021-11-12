@@ -1,4 +1,4 @@
-package com.example.composepractice.view
+package com.example.composepractice.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -16,7 +16,7 @@ import com.example.composepractice.ext.State
 @Composable
 fun LoadingPage(
     state: State,
-    loadInit:(() -> Unit)? = null,
+    loadInit: (() -> Unit)? = null,
     contentView: @Composable BoxScope.() -> Unit
 ){
     Box(modifier = Modifier.fillMaxSize(),contentAlignment = Alignment.Center) {

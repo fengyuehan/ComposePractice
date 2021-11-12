@@ -1,7 +1,5 @@
 package com.example.composepractice.ext
 
-import java.lang.Error
-
 sealed class State {
     object Loading :State()
     object Success :State()
