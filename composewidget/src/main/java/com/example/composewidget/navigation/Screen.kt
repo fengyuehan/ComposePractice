@@ -23,5 +23,8 @@ object Screen {
     const val theme = "theme"
     const val editText = "editText"
     const val animation_other = "animation_other"
-
+    const val dialog = "dialog"
+    const val AlertDialog = "AlertDialog"
+    const val DropdownMenu = "DropdownMenu"
+    const val Popup = "Popup"
 }

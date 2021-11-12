@@ -19,7 +19,10 @@ class MainViewModel :ViewModel() {
         add(FuncInfo("自定义布局", Screen.custom_layout, Color(0xFF3587EC)))
         add(FuncInfo("动画", Screen.animation, Color(0xFFDD26AF)))
         add(FuncInfo("手势", Screen.gesture, Color(0xFF1BC3E0)))
-
+        add(FuncInfo("Dialog", Screen.dialog, Color(0xFF1BC3E0)))
+        add(FuncInfo("AlertDialog", Screen.AlertDialog, Color(0xFFFFBE3B)))
+        add(FuncInfo("DropdownMenu", Screen.DropdownMenu, Color(0xFF6200EE)))
+        add(FuncInfo("Popup", Screen.Popup, Color(0xFFDD26AF)))
     }
 
     val images = arrayListOf<String>().apply {

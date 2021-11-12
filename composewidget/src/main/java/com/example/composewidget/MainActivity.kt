@@ -113,6 +113,18 @@ fun Content(){
         composable(Screen.animation_other){
             AnimationOtherPageDemo()
         }
+        composable(Screen.dialog){
+            DialogPageDemo()
+        }
+        composable(Screen.AlertDialog){
+            AlertDialogDemo()
+        }
+        composable(Screen.DropdownMenu){
+            DropdownMenuDemo()
+        }
+        composable(Screen.Popup){
+            PopPageDemo()
+        }
     }
 }
 
