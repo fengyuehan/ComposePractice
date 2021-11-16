@@ -125,6 +125,36 @@ fun Content(){
         composable(Screen.Popup){
             PopPageDemo()
         }
+        composable(Screen.BottomSheetScaffold){
+            bottomSheetScaffoldTest()
+        }
+        composable(Screen.ModalBottomSheet){
+            modalBottomSheetLayoutTest()
+        }
+        composable(Screen.BackdropScaffold){
+            backdropScaffoldTest()
+        }
+        composable(Screen.TopAppBar){
+            topBarView()
+        }
+        composable(Screen.BottomAppBar){
+            bottomBarView()
+        }
+        composable(Screen.SnackBar){
+            snackbarTest()
+        }
+        composable(Screen.ModalDrawer){
+            modalDrawerTest()
+        }
+        composable(Screen.BottomDrawer){
+            bottomDrawerTest()
+        }
+        composable(Screen.BottomNavigation){
+            bottomNavigationTest()
+        }
+        composable(Screen.ListItem){
+            listItemTest()
+        }
     }
 }
 

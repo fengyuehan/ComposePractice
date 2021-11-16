@@ -21,3 +21,5 @@ rootProject.name = "ComposePractice"
 include ':app'
 include ':composewidget'
 include ':composechat'
+include ':base'
+include ':proxy'

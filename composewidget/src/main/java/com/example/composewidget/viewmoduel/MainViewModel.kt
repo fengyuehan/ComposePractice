@@ -23,6 +23,17 @@ class MainViewModel :ViewModel() {
         add(FuncInfo("AlertDialog", Screen.AlertDialog, Color(0xFFFFBE3B)))
         add(FuncInfo("DropdownMenu", Screen.DropdownMenu, Color(0xFF6200EE)))
         add(FuncInfo("Popup", Screen.Popup, Color(0xFFDD26AF)))
+        add(FuncInfo("BottomSheetScaffold", Screen.BottomSheetScaffold, Color(0xFFDD26AF)))
+        add(FuncInfo("ModalBottomSheet", Screen.ModalBottomSheet, Color(0xFFDD26AF)))
+        add(FuncInfo("BackdropScaffold", Screen.BackdropScaffold, Color(0xFFDD26AF)))
+        add(FuncInfo("TopAppBar", Screen.TopAppBar, Color(0xFFDD26AF)))
+        add(FuncInfo("BottomAppBar", Screen.BottomAppBar, Color(0xFFDD26AF)))
+        add(FuncInfo("SnackBar", Screen.SnackBar, Color(0xFFDD26AF)))
+        add(FuncInfo("ModalBottomSheet", Screen.ModalBottomSheet, Color(0xFFDD26AF)))
+        add(FuncInfo("ModalDrawer", Screen.ModalDrawer, Color(0xFFDD26AF)))
+        add(FuncInfo("BottomDrawer", Screen.BottomDrawer, Color(0xFFDD26AF)))
+        add(FuncInfo("BottomNavigation", Screen.BottomNavigation, Color(0xFFDD26AF)))
+        add(FuncInfo("ListItem", Screen.ListItem, Color(0xFFDD26AF)))
     }
 
     val images = arrayListOf<String>().apply {
