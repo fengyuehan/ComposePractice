@@ -155,6 +155,15 @@ fun Content(){
         composable(Screen.ListItem){
             listItemTest()
         }
+        composable(Screen.custom_layout){
+            RowPageTest2{
+
+            }
+        }
+        composable(Screen.canvas2){
+            CanvasPage2Demo()
+        }
+
     }
 }
 
