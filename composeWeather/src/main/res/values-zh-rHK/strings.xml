@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">玩天氣</string>
+
+    <string name="default_location">北京</string>
+
+    <string name="default_weather">晴</string>
+
+    <string name="air_quality_title">空氣質量</string>
+    <string name="air_quality_Current_aqi">當前AQI（CN）為：</string>
+    <string name="air_quality_warn">，主要汙染物為:</string>
+    <string name="air_quality_level">優</string>
+
+    <string name="add_location_warn">已經存在該城市，請勿重復添加</string>
+    <string name="add_location_warn2">查詢的數據或地區不存在。</string>
+
+    <string name="body_temperature_title">體感溫度</string>
+    <string name="body_temperature_tip">與實際氣溫相似</string>
+
+    <string name="rainfall_title">降雨</string>
+    <string name="rainfall_unit">毫米</string>
+    <string name="rainfall_tip1">今日有雨，記得帶傘哦！</string>
+    <string name="rainfall_tip2">預計今日沒雨</string>
+
+    <string name="humidity_title">濕度</string>
+    <string name="humidity_tip">目前濕度正常</string>
+
+    <string name="wind_title">風</string>
+    <string name="wind_unit">級</string>
+    <string name="wind_tip">當前風速為</string>
+
+    <string name="air_pressure_title">氣壓</string>
+    <string name="air_pressure_unit">百帕</string>
+    <string name="air_pressure_tip">當前的大氣壓</string>
+
+    <string name="visibility_title">能見度</string>
+    <string name="visibility_unit">公裏</string>
+    <string name="visibility_tip">當前的能見度</string>
+
+    <string name="time_today">今天</string>
+    <string name="time_now">現在</string>
+    <string name="time_hour">時</string>
+
+    <string name="twenty_four_hour_title">24小時天氣預報</string>
+    <string name="seven_day_title">7日天氣預報</string>
+
+    <string name="city_list_title">城市天氣</string>
+    <string name="city_list_search_hint">請輸入城市名稱</string>
+
+    <string name="city_title">城市天气列表</string>
+    <string name="city_delete">刪除</string>
+
+    <string name="city_dialog_title">添加城市</string>
+    <string name="city_dialog_content">是否要將城市「%s」添加到天氣列表？</string>
+    <string name="city_dialog_confirm">確認添加</string>
+    <string name="city_dialog_cancel">大可不必</string>
+
+    <string name="uv_index_title">紫外線指數</string>
+    <string name="uv_index1">紫外線強度最弱，外出時戴上太陽帽即可</string>
+    <string name="uv_index2">紫外線強度較弱，外出時需要在身上塗上防曬霜</string>
+    <string name="uv_index3">紫外線強度較強，外出時必須在陰涼處行走</string>
+    <string name="uv_index4">紫外線強度很強，最好不要到沙灘場地上曬太陽</string>
+    <string name="uv_index5">紫外線強度特別強，盡量避免外出</string>
+
+    <string name="sun_title">日出日落</string>
+    <string name="sun_sunrise">日出：</string>
+    <string name="sun_sunset">日落：</string>
+
+    <string name="bad_network_view_tip">您的網絡不給力，點擊屏幕可重新加載</string>
+
+    <string name="permission_title">權限設置</string>
+    <string name="permission_content">天氣需要獲取當前位置以展示當前的天氣</string>
+    <string name="permission_sure">打開設置</string>
+    <string name="permission_cancel">取消</string>
+
+</resources>

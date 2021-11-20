@@ -27,6 +27,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.composewidget.customLayout.customCornerPosLayoutTest
 import com.example.composewidget.navigation.Screen
 import com.example.composewidget.page.*
 
@@ -162,6 +163,9 @@ fun Content(){
         }
         composable(Screen.canvas2){
             CanvasPage2Demo()
+        }
+        composable(Screen.custom_layout2){
+            customCornerPosLayoutTest()
         }
 
     }

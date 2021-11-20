@@ -6,6 +6,7 @@ object Screen {
     const val canvas = "canvas"
     const val canvas2 = "canvas2"
     const val custom_layout = "custom_layout"
+    const val custom_layout2 = "custom_layout2"
     const val gesture = "gesture"
     const val image = "image"
     const val layout = "layout"

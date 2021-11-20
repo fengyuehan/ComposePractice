@@ -35,6 +35,8 @@ class MainViewModel :ViewModel() {
         add(FuncInfo("BottomNavigation", Screen.BottomNavigation, Color(0xFFDD26AF)))
         add(FuncInfo("ListItem", Screen.ListItem, Color(0xFFDD26AF)))
         add(FuncInfo("canvas2", Screen.canvas2, Color(0xFFDD26AF)))
+        add(FuncInfo("custom_layout2", Screen.custom_layout2, Color(0xFFDD26AF)))
+
     }
 
     val images = arrayListOf<String>().apply {
