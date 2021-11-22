@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import com.example.composeweather.room.CityInfo
 import com.example.composeweather.util.FeatureRequiresLocationPermissions
 import com.example.composeweather.util.getLocation
+import com.example.composeweather.view.WeatherPage
 import com.example.composeweather.view.WeatherViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -55,6 +56,7 @@ fun WeatherViewPager(
     )
 }
 
+@RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("CoroutineCreationDuringComposition")
 @ExperimentalPagerApi
 @Composable
@@ -78,7 +80,16 @@ fun WeatherViewPager(
             }
         }
         HorizontalPager(count = cityInfoList.size, state = pagerState) {
-
+            page ->
+            WeatherPage(
+                weatherViewModel = weatherViewModel,
+                cityInfo = cityInfoList[page],
+                onErrorClick = {
+                    val location = getLocation(cityInfoList[page])
+                    if (location != null) {
+                        weatherViewModel.getWeather(location)
+                    } },
+                cityList = toCityList, cityListClick = toWeatherList)
         }
     }
 }
