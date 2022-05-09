@@ -1,9 +1,12 @@
 package com.example.composewidget.page
 
+import android.util.Log
+import android.widget.Button
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -106,15 +109,52 @@ fun LayoutContent() {
                 Text(
                     "第${clickCount}次点击",
                     Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
                 Text(
                     text = "这个界面使用的是Scaffold来布局",
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
+                Foo()
             }
         })
+}
+
+/**
+ * 测试重组域
+ * Compose 在编译期分析出会受到某 state 变化影响的代码块，并记录其引用，当此 state 变化时，会根据引用找到这些代码块并标记为 Invalid 。
+ * 在下一渲染帧到来之前 Compose 会触发 recomposition，并在重组过程中执行 invalid 代码块。Invalid 代码块即编译器找出的下次重组范围。
+ * 能够被标记为 Invalid 的代码必须是非 inline 且无返回值的 @Composalbe function/lambda，必须遵循 重组范围最小化 原则。
+ *
+ * Column、Row、Box 乃至 Layout 这种容器类 Composable 都是 inline 函数，因此它们只能共享调用方的重组范围，也就是 Button 的 尾lambda
+ */
+/**
+ *  {
+      text = "$text $text"
+    }.also {
+      Log.d("zz", "Button")
+    })
+    可以理解为先赋值后打印，所以不参与重组
+ */
+@Composable
+fun Foo(){
+    var text by remember {
+        mutableStateOf("zz")
+    }
+    Log.e("zz","foo")
+    Button(onClick = {
+        text = "$text $text"
+    }.also {
+        Log.d("zz", "Button")
+    }) {
+        Log.d("zz", "Button content lambda")
+        Text(text).also { Log.d("zz", "Text") }
+    }
+    /**
+     * D/Compose: Button content lambda
+       D/Compose: Text
+     */
 }
 
 /**

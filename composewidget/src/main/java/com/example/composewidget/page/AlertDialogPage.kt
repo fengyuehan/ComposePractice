@@ -17,7 +17,7 @@ fun AlertDialogDemo(){
     AlertDialog(
         onDismissRequest = { },
         buttons = {
-            Row() {
+            Row {
                 Button(
                     onClick = {
                     },
